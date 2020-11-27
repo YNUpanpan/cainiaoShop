@@ -23,6 +23,10 @@ import androidx.fragment.app.FragmentTransaction;
 /**
  * 功能描述：修改过的FragmentTabHost,保存fragment实例不销毁
  */
+
+/**
+ * Created by YNUpanpan on 20/11/25.
+ */
 public class FragmentTabHost extends TabHost implements
 		TabHost.OnTabChangeListener {
 	private final ArrayList<TabInfo> mTabs = new ArrayList<TabInfo>();

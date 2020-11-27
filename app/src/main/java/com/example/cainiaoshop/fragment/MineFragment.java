@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.example.cainiaoshop.R;
 
 /**
- * Created by Ivan on 20/11/25.
+ * Created by YNUpanpan on 20/11/25.
  */
 public class MineFragment extends Fragment {
 

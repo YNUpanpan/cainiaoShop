@@ -4,6 +4,13 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
 
+    <TextView
+        android:id="@+id/qianji"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="云上黔集"
+        android:visibility="visible">
+    </TextView>
     <EditText
         android:id="@+id/toolbar_searchview"
         style="@style/search_view"
@@ -13,7 +20,7 @@
         android:layout_gravity="center"
         android:drawableLeft="@mipmap/icon_search"
         android:gravity="center"
-        android:hint="请输入搜索内容"
+        android:hint="云上黔集"
         android:visibility="gone" />
 
     <TextView

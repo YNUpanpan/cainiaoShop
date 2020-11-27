@@ -20,6 +20,10 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.cainiaoshop.R;
 
+
+/**
+ * Created by YNUpanpan on 20/11/25.
+ */
 public class CnToolbar extends Toolbar {
     
     private LayoutInflater mInflater;

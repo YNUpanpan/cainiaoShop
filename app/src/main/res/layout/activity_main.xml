@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+
     <com.example.cainiaoshop.widget.CnToolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,10 +20,6 @@
 
     </com.example.cainiaoshop.widget.CnToolbar>
 
-    <com.youth.banner.Banner
-        android:id="@+id/banner"
-        android:layout_width="match_parent"
-        android:layout_height="170dp" />
 
     <FrameLayout
         android:id="@+id/realtabcontent"

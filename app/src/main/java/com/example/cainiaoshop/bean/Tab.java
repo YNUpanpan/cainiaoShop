@@ -1,7 +1,7 @@
 package com.example.cainiaoshop.bean;
 
 /**
- * Created by pan on 20/11/25.
+ * Created by YNUpan on 20/11/25.
  */
 public class Tab {
 

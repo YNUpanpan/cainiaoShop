@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.cainiaoshop.widget.CnToolbar
+    <com.example.cainiaoshop.widget.CNiaoToolBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorAccent"
@@ -15,6 +15,6 @@
         
         app:title="主页">
 
-    </com.example.cainiaoshop.widget.CnToolbar>
+    </com.example.cainiaoshop.widget.CNiaoToolBar>
 
 </LinearLayout>

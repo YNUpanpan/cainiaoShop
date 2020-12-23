@@ -1,26 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cainiaoshop">
-
     <!-- if you want to load images from the internet -->
-
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- if you want to load images from a file OR from the internet -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
     <application
+        android:name=".CniaoApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+        <!--<activity android:name=".TestActvity"></activity>-->
+        <activity android:name=".activity.WareListActivity"/>
+        <activity android:name=".activity.WareDetailActivity" android:label="@string/title_activity_ware_detail"> </activity>
+        <activity android:name=".activity.LoginActivity"/>
+        <activity android:name=".activity.NewOrderActivity" android:label="@string/title_activity_new_order"> </activity>
 
+
+
+        <activity android:name=".activity.RegSecondActivity"/>
+
+        <activity android:name=".activity.CreateOrderActivity"/>
+        <activity android:name=".activity.PayResultActivity"/>
+        <activity android:name=".activity.RegActivity" android:label="@string/title_activity_reg"> </activity>
+
+        <activity android:name=".activity.MyOrderActivity"/>
+
+        <activity android:name=".activity.AddressListActivity"/>
+
+        <activity android:name=".activity.AddressAddActivity"/>
+
+
+
+        <meta-data android:name="mob_sms_appKey" android:value="31d6070c86199"/>
+
+        <meta-data android:name="mob_sms_appSecrect" android:value="76fa1ab1064aea864f7f8e8811788279"/>
+    </application>
 </manifest>

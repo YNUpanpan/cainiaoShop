@@ -1,5 +1,9 @@
 package com.example.cainiaoshop.adapter;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +14,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cainiaoshop.R;
+import com.example.cainiaoshop.bean.Campaign;
+import com.example.cainiaoshop.bean.HomeCampaign;
 import com.example.cainiaoshop.bean.HomeCategory;
+import com.squareup.picasso.Picasso;
 
+//import com.squareup.picasso.Picasso;
 import java.util.List;
+
+/**
+ * Created by YNUpanpan on 20/12/15.
+ */
 
 public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapter.ViewHolder> {
 
@@ -22,12 +34,21 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
 
     private LayoutInflater mInflater;
 
-    private List<HomeCategory> mDatas;
+    private List<HomeCampaign> mDatas;
+    private Context mContext;
 
-    public HomeCategoryAdapter(List<HomeCategory> datas){
+    private  OnCampaignClickListener mListener;
+    public HomeCategoryAdapter(List<HomeCampaign> datas,Context context){
 
         mDatas=datas;
+        this.mContext=context;
     }
+
+    public void setOnCampaignClickListener(OnCampaignClickListener listener){
+
+        this.mListener = listener;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -44,11 +65,17 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        HomeCategory category = mDatas.get(position);
-        holder.textTitle.setText(category.getName());
-        holder.imageViewBig.setImageResource(category.getImgBig());
-        holder.imageViewSmallTop.setImageResource(category.getImgSmallTop());
-        holder.imageViewSmallBottom.setImageResource(category.getImgSmallBottom());
+        HomeCampaign homeCampaign = mDatas.get(position);
+//        holder.textTitle.setText(homeCampaign.getName());
+//        holder.imageViewBig.setImageResource(homeCampaign.getImgBig());
+//        holder.imageViewSmallTop.setImageResource(homeCampaign.getImgSmallTop());
+//        holder.imageViewSmallBottom.setImageResource(homeCampaign.getImgSmallBottom());
+
+        holder.textTitle.setText(homeCampaign.getTitle());
+
+        Picasso.with(mContext).load(homeCampaign.getCpOne().getImgUrl()).into(holder.imageViewBig);
+        Picasso.with(mContext).load(homeCampaign.getCpTwo().getImgUrl()).into(holder.imageViewSmallTop);
+        Picasso.with(mContext).load(homeCampaign.getCpThree().getImgUrl()).into(holder.imageViewSmallBottom);
     }
 
     @Override
@@ -64,7 +91,7 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
         }
         else return VIEW_TYPE_L;
     }
-    static class ViewHolder extends RecyclerView.ViewHolder{
+     class ViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener {
 
         TextView textTitle;
         ImageView imageViewBig;
@@ -79,6 +106,59 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
             imageViewBig = (ImageView) itemView.findViewById(R.id.imgview_big);
             imageViewSmallTop = (ImageView) itemView.findViewById(R.id.imgview_small_top);
             imageViewSmallBottom = (ImageView) itemView.findViewById(R.id.imgview_small_bottom);
+
+            imageViewBig.setOnClickListener(this);
+            imageViewSmallTop.setOnClickListener(this);
+            imageViewSmallBottom.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+
+
+            if(mListener !=null){
+
+                anim(v);
+
+            }
+
+
+        }
+
+         private  void anim(final View v){
+
+             ObjectAnimator animator =  ObjectAnimator.ofFloat(v, "rotationX", 0.0F, 360.0F)
+                     .setDuration(200);
+             animator.addListener(new AnimatorListenerAdapter() {
+                 @Override
+                 public void onAnimationEnd(Animator animation) {
+
+                     HomeCampaign campaign = mDatas.get(getLayoutPosition());
+
+                     switch (v.getId()){
+
+                         case  R.id.imgview_big:
+                             mListener.onClick(v, campaign.getCpOne());
+                             break;
+
+                         case  R.id.imgview_small_top:
+                             mListener.onClick(v, campaign.getCpTwo());
+                             break;
+
+                         case R.id.imgview_small_bottom:
+                             mListener.onClick(v,campaign.getCpThree());
+                             break;
+
+                     }
+
+                 }
+             });
+             animator.start();
+         }
+     }
+
+    public  interface OnCampaignClickListener{
+
+        void onClick(View view, Campaign campaign);
     }
 }

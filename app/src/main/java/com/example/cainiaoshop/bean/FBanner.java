@@ -2,7 +2,7 @@ package com.example.cainiaoshop.bean;
 
 
 /**
- * Created by Ivan on 20/12/2
+ * Created by YNUPanpan on 20/12/2
  */
 public class FBanner extends BaseBean {
 
